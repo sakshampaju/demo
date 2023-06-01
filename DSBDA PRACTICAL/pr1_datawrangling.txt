@@ -1,0 +1,123 @@
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+
+iris=pd.read_csv("Iris.csv")
+iris.head()
+
+
+iris.tail()
+
+iris.head()
+
+iris.index
+
+iris.columns
+
+iris.shape
+
+iris.shape
+
+iris.dtypes
+
+iris.columns.values
+
+iris.describe(include='all')
+
+iris['Species']
+
+iris.sort_index(axis=1,ascending=False)
+
+iris.sort_values(by="SepalLengthCm")
+
+iris.iloc[5]
+
+iris[0:3]
+
+iris.loc[:,["SepalLengthCm","PetalLengthCm"]]
+
+iris.iloc[:5,:]
+
+iris.iloc[:,:1]
+
+iris.iloc[:3,:5]
+
+iris.iloc[3:5, 0:2]
+
+iris.iloc[[1, 2,5], [0, 4]]
+
+iris.iloc[1:3, :]
+
+iris.iloc[:, 1:3]
+
+iris.iloc[1, 1]
+
+iris['SepalLengthCm'].iloc[5]
+
+cols_2_4=iris.columns[2:4]
+iris[cols_2_4]
+
+iris[iris.columns[2:4]].iloc[5:10]
+
+iris.isnull()
+
+iris.isnull().any()
+
+iris.isnull().sum().sum()
+
+iris.isnull().sum(axis = 1)
+
+iris.isnull().sum()
+
+iris.isna().sum()
+
+iris.SepalLengthCm.isnull().sum()
+
+iris.groupby(['PetalLengthCm'])['PetalWidthCm'].apply(lambda x:x.isnull().sum())
+
+iris.dtypes
+
+iris['SepalLengthCm']=iris['SepalLengthCm'].astype("int")
+
+print(iris.columns.tolist())
+
+iris['SepalLengthCm()']=iris['SepalLengthCm()'].astype["int"]
+
+iris["SepalLengthCm"].unique()
+
+iris.head()
+
+label_encoder = preprocessing.LabelEncoder()
+iris['Species']= label_encoder.fit_transform(iris['Species'])
+iris['Species'].unique()
+
+x=iris[['SepalLengthCm']].values.astype(float)
+min_max_scalar=preprocessing.MinMaxScaler()
+x_scaled=min_max_scalar.fit_transform(x)
+iris_normalized=pd.DataFrame(x_scaled)
+print(iris_normalized.head(10))
+
+iris['PetalLengthCm']=iris['PetalLengthCm'].astype("int")
+print(iris.dtypes)
+
+iris['PetalLengthCm']=iris['PetalLengthCm'].astype("int")
+print(iris.dtypes)
+
+label_encoder=preprocessing.LabelEncoder()
+iris['Species']=label_encoder.fit_transform(iris['Species'])
+print(iris)
+print(iris['Species'].unique())
+
+features_iris=iris.drop(columns=['Species'])
+enc=preprocessing.OneHotEncoder()
+enc_iris=pd.DataFrame(enc.fit_transform(iris[['Species']]))
+iris_encode=features_iris.join(enc_iris)
+iris_encode.rename(columns={0:'Iris-Setosa',1:'Iris-Versicolor',2:'Iris-virginica'},inplace=True)
+print(iris_encode.tail(40))
+
+one_hot_iris=pd.get_dummies(iris,prefix="Species",columns=['Species'],drop_first=False)
+print(one_hot_iris.head(20))
+print(one_hot_iris.tail(20))
+
+
+
